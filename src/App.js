@@ -1,24 +1,19 @@
 import logo from './logo.svg';
 import './App.css';
+import './components/HotelBooking'
+import HotelBooking from './components/HotelBooking';
+import Receipt from "./components/Receipt";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+// import Receipt from "./Receipt";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    
+    <Routes>
+    <Route path="/" element={<HotelBooking />} />
+    <Route path="/receipt" element={<Receipt />} />
+    </Routes>
+
   );
 }
 
