@@ -461,7 +461,9 @@ const HotelBooking = () => {
   useEffect(() => {
     const fetchRooms = async () => {
       try {
-        const response = await fetch("http://localhost:8080/api/bookings/availableRooms");
+        // const response = await fetch("http://localhost:8080/api/bookings/availableRooms");
+        const response = await fetch("https://hotelbookingbackend-suy8.onrender.com/api/bookings/availableRooms");
+
         const data = await response.json();
         setAvailableRooms(data);
       } catch (error) {
@@ -521,7 +523,8 @@ const HotelBooking = () => {
     if (availableRooms[roomTypeKey] > 0) {
       setLoading(true);
       try {
-        const response = await fetch("http://localhost:8080/api/bookings", {
+        // const response = await fetch("http://localhost:8080/api/bookings", {
+        const response = await fetch("https://hotelbookingbackend-suy8.onrender.com/api/bookings", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(formData),
