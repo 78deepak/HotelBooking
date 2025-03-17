@@ -437,11 +437,8 @@
 
 
 
-
-
-
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { useNavigate } from "react-router-dom";
 
 const HotelBooking = () => {
   const [availableRooms, setAvailableRooms] = useState({ ac: 0, nonAc: 0 });
@@ -456,14 +453,12 @@ const HotelBooking = () => {
 
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
-  const navigate = useNavigate(); // Initialize navigation
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchRooms = async () => {
       try {
-        // const response = await fetch("http://localhost:8080/api/bookings/availableRooms");
         const response = await fetch("https://hotelbookingbackend-suy8.onrender.com/api/bookings/availableRooms");
-
         const data = await response.json();
         setAvailableRooms(data);
       } catch (error) {
@@ -523,7 +518,6 @@ const HotelBooking = () => {
     if (availableRooms[roomTypeKey] > 0) {
       setLoading(true);
       try {
-        // const response = await fetch("http://localhost:8080/api/bookings", {
         const response = await fetch("https://hotelbookingbackend-suy8.onrender.com/api/bookings", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -536,7 +530,6 @@ const HotelBooking = () => {
             [roomTypeKey]: prev[roomTypeKey] - 1,
           }));
 
-          // Navigate to Receipt Page with booking details
           navigate("/receipt", { state: { formData } });
         } else {
           alert("Failed to book room!");
@@ -554,6 +547,10 @@ const HotelBooking = () => {
   return (
     <div className="max-w-md mx-auto p-6 bg-white rounded-xl shadow-md">
       <h2 className="text-xl font-bold mb-4">Hotel Room Booking</h2>
+      <div className="mb-4">
+        <p className="text-green-600">Available AC Rooms: {availableRooms.ac}</p>
+        <p className="text-green-600">Available Non-AC Rooms: {availableRooms.nonAc}</p>
+      </div>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
           <input type="text" name="name" value={formData.name} onChange={handleChange} placeholder="Full Name" required className="w-full p-2 border rounded" />
