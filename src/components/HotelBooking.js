@@ -573,12 +573,12 @@ const HotelBooking = () => {
             <option value="Non-AC">Non-AC Room</option>
           </select>
         </div>
-
+        <p>From Date</p>
         <div>
           <input type="date" name="fromDate" value={formData.fromDate} onChange={handleChange} required className="w-full p-2 border rounded" />
           {errors.fromDate && <p className="text-red-500 text-sm">{errors.fromDate}</p>}
         </div>
-
+        <p>To Date</p>
         <div>
           <input type="date" name="toDate" value={formData.toDate} onChange={handleChange} required className="w-full p-2 border rounded" />
           {errors.toDate && <p className="text-red-500 text-sm">{errors.toDate}</p>}
